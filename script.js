@@ -731,12 +731,8 @@ function initContactForm() {
         throw new Error('GitHub API error: ' + response.status);
       }
     } catch (err) {
-      console.warn('GitHub Issues submission failed, falling back to mailto.', err);
-      const mailtoSubject = encodeURIComponent(`[Bites & Clicks] ${subject} - from ${name}`);
-      const mailtoBody = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}`);
-      displayFeedback('Opening your email client as backup...', 'info');
-      setTimeout(() => { window.location.href = `mailto:bites.clicks@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`; }, 800);
-      form.reset();
+      console.error('Contact submission error:', err);
+      displayFeedback('❌ Failed to send message. Please check your internet connection and try again.', 'error');
     }
   });
 }
