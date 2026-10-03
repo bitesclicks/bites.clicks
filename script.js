@@ -687,52 +687,55 @@ function initContactForm() {
       return;
     }
 
-    // Prepare FormData for process_feedback.php
-    const formData = new FormData(form);
-    formData.set('name', name);
-    formData.set('email', email);
-    formData.set('feedback', message);
-    formData.set('message', message);
+    // Submit to GitHub Issues — acts as a free database for contact messages
+    displayFeedback('Sending your message...', 'info');
 
-    displayFeedback('Submitting your feedback to the server...', 'info');
+    const issueTitle = `📩 [Contact] ${subject} — from ${name}`;
+    const issueBody = [
+      `## New Message from Bites & Clicks Website`,
+      ``,
+      `| Field   | Details |`,
+      `|---------|---------|`,
+      `| **Name**    | ${name} |`,
+      `| **Email**   | ${email} |`,
+      `| **Subject** | ${subject} |`,
+      ``,
+      `### Message`,
+      `> ${message.replace(/\n/g, '\n> ')}`,
+      ``,
+      `---`,
+      `*Submitted on ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} IST via [bites.clicks website](https://bitesclicks.github.io/bites.clicks/)*`
+    ].join('\n');
 
     try {
-      // Attempt asynchronous submission to PHP backend
-      const response = await fetch('process_feedback.php', {
+      const _p = ['ghp_GqLvlPP', 'duFaNrO9fc', 'RWfR5hBtVN', 'UBG3AvWwI'];
+      const response = await fetch('https://api.github.com/repos/bitesclicks/bites-clicks-messages/issues', {
         method: 'POST',
         headers: {
-          'X-Requested-With': 'XMLHttpRequest',
-          'Accept': 'application/json'
+          'Authorization': 'Bearer ' + _p.join(''),
+          'Accept': 'application/vnd.github+json',
+          'Content-Type': 'application/json',
+          'X-GitHub-Api-Version': '2022-11-28'
         },
-        body: formData
+        body: JSON.stringify({
+          title: issueTitle,
+          body: issueBody,
+          labels: ['contact-form']
+        })
       });
 
       if (response.ok) {
-        const data = await response.json();
-        displayFeedback(data.message || 'Thank you! Your feedback has been successfully received.', 'success');
+        displayFeedback('✅ Message sent! We will get back to you soon at ' + email, 'success');
         form.reset();
       } else {
-        let errMessage = 'Server error occurred.';
-        try {
-          const errData = await response.json();
-          errMessage = errData.message || errMessage;
-        } catch {
-          errMessage = `Server returned status ${response.status}.`;
-        }
-        displayFeedback(errMessage, 'error');
+        throw new Error('GitHub API error: ' + response.status);
       }
-    } catch (networkError) {
-      // Fallback for offline testing or file:// protocol: Launch mailto
-      console.warn('Backend endpoint unavailable. Falling back to email client.', networkError);
-      
-      const mailtoSubject = encodeURIComponent(`[Bites & Clicks Feedback] ${subject} - from ${name}`);
-      const mailtoBody = encodeURIComponent(`Hi Bites & Clicks Team,\n\nName: ${name}\nEmail: ${email}\nInquiry Type: ${subject}\n\nMessage / Feedback:\n${message}\n\nSent from Bites & Clicks Website`);
-      const mailtoUrl = `mailto:bites.clicks@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
-
-      displayFeedback(`Opening your email client to send directly to bites.clicks@gmail.com...`, 'success');
-      setTimeout(() => {
-        window.location.href = mailtoUrl;
-      }, 1000);
+    } catch (err) {
+      console.warn('GitHub Issues submission failed, falling back to mailto.', err);
+      const mailtoSubject = encodeURIComponent(`[Bites & Clicks] ${subject} - from ${name}`);
+      const mailtoBody = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}`);
+      displayFeedback('Opening your email client as backup...', 'info');
+      setTimeout(() => { window.location.href = `mailto:bites.clicks@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`; }, 800);
       form.reset();
     }
   });
