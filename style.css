@@ -403,6 +403,8 @@ input, textarea, select {
   height: 100%;
   display: block;
   z-index: 1;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
 }
 
 /* Vignette overlay for contrast and text readability */
@@ -579,9 +581,9 @@ input, textarea, select {
   position: absolute;
   max-width: 780px;
   width: 92%;
-  background: rgba(28, 20, 15, 0.72);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(28, 20, 15, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(245, 241, 231, 0.2);
   border-radius: var(--radius-lg);
   padding: 3rem 3.25rem;
@@ -589,9 +591,9 @@ input, textarea, select {
   text-align: center;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
   opacity: 0;
-  transform: translateY(30px);
+  transform: translate3d(0, 24px, 0);
   pointer-events: none;
-  transition: opacity 0.15s linear, transform 0.15s linear;
+  will-change: transform, opacity;
 }
 
 .feature-overlay-card.active {
@@ -2215,17 +2217,13 @@ textarea.form-control {
   .feature-overlay-card {
     padding: 2.25rem 1.5rem;
     width: 95%;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(22, 16, 12, 0.94);
   }
 
   .feature-headline {
     font-size: 2rem;
-  }
-
-  .scroll-hud-badge {
-    top: calc(var(--header-height) + 0.75rem);
-    right: 1rem;
-    padding: 0.3rem 0.75rem;
-    font-size: 0.75rem;
   }
 
   .scroll-indicator-cue {

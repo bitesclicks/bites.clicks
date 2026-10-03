@@ -38,6 +38,7 @@ function initStickyHeader() {
 
 /* --------------------------------------------------------------------------
    Cinematic Hero Section: Pinned Canvas & 300-Frame Image Sequence
+   Smooth momentum interpolated rendering for lag-free 60fps scrolling
    -------------------------------------------------------------------------- */
 function initCinematicHero() {
   const canvas = document.getElementById('heroCanvas');
@@ -45,11 +46,10 @@ function initCinematicHero() {
   const stage = document.getElementById('heroPinnedStage');
   if (!canvas || !heroSection || !stage) return;
 
-  const ctx = canvas.getContext('2d', { alpha: false });
+  const ctx = canvas.getContext('2d', { alpha: false, desynchronized: true });
   const preloader = document.getElementById('sequencePreloader');
   const preloaderBarFill = document.getElementById('preloaderBarFill');
   const preloaderCounter = document.getElementById('preloaderCounter');
-  const hudFrameText = document.getElementById('hudFrameText');
   const scrollCue = document.getElementById('scrollCue');
 
   const overlayIntro = document.getElementById('overlayIntro');
@@ -63,12 +63,14 @@ function initCinematicHero() {
   let currentDrawnFrame = 0;
   let isInitialRenderDone = false;
 
-  // 1. Responsive Canvas Sizing with DPI support
+  // 1. Responsive Canvas Sizing with mobile-optimized DPI
   let canvasWidth = window.innerWidth;
   let canvasHeight = window.innerHeight;
 
   function resizeCanvas() {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const isMobile = window.innerWidth <= 768;
+    // On mobile cap DPR at 1 for 75% GPU fill rate savings; desktop at 1.5 max
+    const dpr = isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 1.5);
     canvasWidth = window.innerWidth;
     canvasHeight = window.innerHeight;
 
@@ -78,33 +80,33 @@ function initCinematicHero() {
     canvas.style.height = canvasHeight + 'px';
 
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'medium';
 
     if (currentDrawnFrame > 0 && frames[currentDrawnFrame]) {
       drawCoverImage(frames[currentDrawnFrame]);
     }
   }
 
-  // 2. object-fit: cover algorithm for canvas
+  // 2. Ultra-fast object-fit: cover algorithm without redundant fillRect
   function drawCoverImage(img) {
     if (!img || !img.complete || img.naturalWidth === 0) return;
     const imgW = img.naturalWidth;
     const imgH = img.naturalHeight;
-    const hRatio = canvasWidth / imgW;
-    const vRatio = canvasHeight / imgH;
-    const ratio = Math.max(hRatio, vRatio);
+    const ratio = Math.max(canvasWidth / imgW, canvasHeight / imgH);
 
     const renderW = imgW * ratio;
     const renderH = imgH * ratio;
-    const offsetX = (canvasWidth - renderW) / 2;
-    const offsetY = (canvasHeight - renderH) / 2;
+    const offsetX = (canvasWidth - renderW) * 0.5;
+    const offsetY = (canvasHeight - renderH) * 0.5;
 
-    ctx.fillStyle = '#140E0A';
-    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
     ctx.drawImage(img, 0, 0, imgW, imgH, offsetX, offsetY, renderW, renderH);
   }
 
   // Draw nearest available loaded frame
   function renderFrame(targetIndex) {
+    if (targetIndex === currentDrawnFrame) return;
+
     if (frames[targetIndex] && frames[targetIndex].complete) {
       drawCoverImage(frames[targetIndex]);
       currentDrawnFrame = targetIndex;
@@ -128,15 +130,18 @@ function initCinematicHero() {
     }
   }
 
-  // 3. Preload 300 PNG frames
+  // 3. Preload 300 PNG frames with controlled concurrency pipeline
   function getFramePath(idx) {
     return `split/ezgif-frame-${idx}.png`;
   }
 
   function preloadFrames() {
     let completed = 0;
+    let nextIdx = 1;
+    const CONCURRENCY = 6;
+    let active = 0;
 
-    function handleImageLoad(idx, img) {
+    function handleComplete() {
       completed++;
       loadedCount = completed;
 
@@ -144,64 +149,69 @@ function initCinematicHero() {
       if (preloaderBarFill) preloaderBarFill.style.width = pct + '%';
       if (preloaderCounter) preloaderCounter.textContent = pct + '%';
 
-      // First frame ready: render immediately!
-      if (idx === 1 && !isInitialRenderDone) {
-        isInitialRenderDone = true;
-        renderFrame(1);
-      }
-
-      // Hide preloader once first 20 frames are ready
-      if (completed >= 20 && preloader && !preloader.classList.contains('loaded')) {
+      if (completed >= 15 && preloader && !preloader.classList.contains('loaded')) {
         preloader.classList.add('loaded');
       }
-
       if (completed === TOTAL_FRAMES && preloader) {
         preloader.classList.add('loaded');
       }
     }
 
-    // Load initial 10 frames first for instant first-paint
-    for (let i = 1; i <= 10; i++) {
-      loadSingleFrame(i);
-    }
+    function loadNext() {
+      while (active < CONCURRENCY && nextIdx <= TOTAL_FRAMES) {
+        const i = nextIdx++;
+        active++;
 
-    // Then preload remaining frames in progressive batches
-    setTimeout(() => {
-      for (let i = 11; i <= TOTAL_FRAMES; i++) {
-        loadSingleFrame(i);
+        const img = new Image();
+        img.decoding = 'async';
+        img.src = getFramePath(i);
+        img.onload = () => {
+          frames[i] = img;
+          if (i === 1 && !isInitialRenderDone) {
+            isInitialRenderDone = true;
+            renderFrame(1);
+          }
+          active--;
+          handleComplete();
+          loadNext();
+        };
+        img.onerror = () => {
+          // Fallback to padded 3-digit number
+          const padded = String(i).padStart(3, '0');
+          const altImg = new Image();
+          altImg.decoding = 'async';
+          altImg.src = `split/ezgif-frame-${padded}.png`;
+          altImg.onload = () => {
+            frames[i] = altImg;
+            if (i === 1 && !isInitialRenderDone) {
+              isInitialRenderDone = true;
+              renderFrame(1);
+            }
+            active--;
+            handleComplete();
+            loadNext();
+          };
+          altImg.onerror = () => {
+            active--;
+            handleComplete();
+            loadNext();
+          };
+        };
       }
-    }, 40);
-
-    function loadSingleFrame(i) {
-      const img = new Image();
-      img.src = getFramePath(i);
-      img.onload = () => {
-        frames[i] = img;
-        handleImageLoad(i, img);
-      };
-      img.onerror = () => {
-        // Fallback to padded format if unpadded failed
-        const padded = String(i).padStart(3, '0');
-        const altImg = new Image();
-        altImg.src = `split/ezgif-frame-${padded}.png`;
-        altImg.onload = () => {
-          frames[i] = altImg;
-          handleImageLoad(i, altImg);
-        };
-        altImg.onerror = () => {
-          completed++;
-        };
-      };
     }
+
+    loadNext();
   }
 
-  // 4. Smooth Fade & Slide Transitions for Feature Overlays
+  // 4. Hardware-accelerated transitions for feature overlays
   function updateOverlayState(el, frame, start, fadeInEnd, fadeOutStart, end) {
     if (!el) return;
     if (frame < start || frame > end) {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(24px)';
-      el.style.pointerEvents = 'none';
+      if (el.style.opacity !== '0') {
+        el.style.opacity = '0';
+        el.style.transform = 'translate3d(0, 24px, 0)';
+        el.style.pointerEvents = 'none';
+      }
       return;
     }
 
@@ -219,58 +229,57 @@ function initCinematicHero() {
     }
 
     el.style.opacity = opacity.toFixed(3);
-    el.style.transform = `translateY(${translateY.toFixed(1)}px)`;
+    el.style.transform = `translate3d(0, ${translateY.toFixed(1)}px, 0)`;
     el.style.pointerEvents = opacity > 0.25 ? 'auto' : 'none';
   }
 
-  // 5. Scroll Loop with requestAnimationFrame for 60fps
-  let isTicking = false;
+  function updateAllOverlays(frame) {
+    if (scrollCue) {
+      scrollCue.style.opacity = frame > 10 ? '0' : '1';
+    }
+    updateOverlayState(overlayIntro, frame, 1, 1, 20, 32);
+    updateOverlayState(overlay1, frame, 25, 40, 85, 100);
+    updateOverlayState(overlay2, frame, 101, 120, 180, 200);
+    updateOverlayState(overlay3, frame, 201, 220, 300, 300);
+  }
+
+  // 5. Smooth Momentum Animation Loop (LERP)
+  let targetFrame = 1;
+  let smoothedFrame = 1;
+  let isLoopActive = false;
 
   function onScroll() {
-    if (!isTicking) {
-      requestAnimationFrame(updateScrollSequence);
-      isTicking = true;
+    const rect = heroSection.getBoundingClientRect();
+    const scrollDistance = heroSection.offsetHeight - window.innerHeight;
+    if (scrollDistance <= 0) return;
+    const scrolled = -rect.top;
+    const progress = Math.max(0, Math.min(1, scrolled / scrollDistance));
+
+    targetFrame = 1 + progress * (TOTAL_FRAMES - 1);
+
+    if (!isLoopActive) {
+      isLoopActive = true;
+      requestAnimationFrame(animationLoop);
     }
   }
 
-  function updateScrollSequence() {
-    isTicking = false;
+  function animationLoop() {
+    const diff = targetFrame - smoothedFrame;
 
-    const rect = heroSection.getBoundingClientRect();
-    const scrollDistance = heroSection.offsetHeight - window.innerHeight;
-    const scrolled = -rect.top;
-
-    // Normalized progress: 0.0 at top to 1.0 right before unpinning
-    const progress = Math.max(0, Math.min(1, scrolled / scrollDistance));
-
-    // Map to 1..300 frame index
-    const targetFrame = Math.min(TOTAL_FRAMES, Math.max(1, Math.round(progress * (TOTAL_FRAMES - 1)) + 1));
-
-    // Draw canvas cover
-    renderFrame(targetFrame);
-
-    // Update HUD frame badge
-    if (hudFrameText) {
-      hudFrameText.textContent = `Frame ${targetFrame} / ${TOTAL_FRAMES}`;
+    if (Math.abs(diff) > 0.05) {
+      // 0.20 provides a snappy yet buttery smooth momentum feel
+      smoothedFrame += diff * 0.20;
+      const frameToDraw = Math.min(TOTAL_FRAMES, Math.max(1, Math.round(smoothedFrame)));
+      renderFrame(frameToDraw);
+      updateAllOverlays(smoothedFrame);
+      requestAnimationFrame(animationLoop);
+    } else {
+      smoothedFrame = targetFrame;
+      const frameToDraw = Math.min(TOTAL_FRAMES, Math.max(1, Math.round(smoothedFrame)));
+      renderFrame(frameToDraw);
+      updateAllOverlays(smoothedFrame);
+      isLoopActive = false;
     }
-
-    // Scroll cue indicator fades out after scrolling begins
-    if (scrollCue) {
-      scrollCue.style.opacity = targetFrame > 10 ? '0' : '1';
-    }
-
-    // Overlays linked directly to user's frame requirements:
-    // Intro card: Frames 1 - 32
-    updateOverlayState(overlayIntro, targetFrame, 1, 1, 20, 32);
-
-    // Feature 1 (Frames 1 - 100): "Savor the Flavors"
-    updateOverlayState(overlay1, targetFrame, 25, 40, 85, 100);
-
-    // Feature 2 (Frames 101 - 200): "Frame the Beauty"
-    updateOverlayState(overlay2, targetFrame, 101, 120, 180, 200);
-
-    // Feature 3 (Frames 201 - 300): "Join the Journey"
-    updateOverlayState(overlay3, targetFrame, 201, 220, 300, 300);
   }
 
   // Event Listeners
@@ -279,14 +288,15 @@ function initCinematicHero() {
 
   resizeCanvas();
   preloadFrames();
-  updateScrollSequence();
+  onScroll();
+  animationLoop();
 
-  // Safety fallback: ensure preloader is dismissed after 3.5s
+  // Safety fallback: ensure preloader is dismissed after 3s
   setTimeout(() => {
     if (preloader && !preloader.classList.contains('loaded')) {
       preloader.classList.add('loaded');
     }
-  }, 3500);
+  }, 3000);
 }
 
 /* --------------------------------------------------------------------------
