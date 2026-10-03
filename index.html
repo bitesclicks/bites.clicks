@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bites &amp; Clicks - Exploring Food and Sights</title>
+  <meta name="description" content="Bites &amp; Clicks is a passion project exploring the best of local food and scenic photography. Masterminded by Mazin KC, captured by videographer Anzil, and designed &amp; created by Sinan PC.">
+  <meta name="keywords" content="Bites and Clicks, Kerala Food, Foodie, Travel Photography, Reels, Mazin KC, Anzil, Sinan PC, Backwaters, Street Food">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:title" content="Bites &amp; Clicks - Exploring Food and Sights">
+  <meta property="og:description" content="Discover local food flavors and breathtaking scenic photography from @bites.clicks.">
+  <meta property="og:image" content="img1.jpg">
+  <meta property="og:url" content="https://www.instagram.com/bites.clicks">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="img1.jpg">
+
+  <!-- Google Fonts: Outfit (modern sans-serif) & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Subtle Tropical Leaf Pattern Background -->
+  <div class="tropical-bg-pattern" aria-hidden="true"></div>
+
+  <!-- ========================================================================
+       Sticky Navigation Bar
+       ======================================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-container">
+      <!-- Brand Logo & Title -->
+      <a href="#hero" class="brand-link" aria-label="Bites &amp; Clicks Home">
+        <img src="img1.jpg" alt="Bites &amp; Clicks Logo" class="brand-logo-img">
+        <div class="brand-text-wrapper">
+          <span class="brand-name">Bites &amp; Clicks</span>
+          <span class="brand-sub">Food &bull; Sights &bull; Stories</span>
+        </div>
+      </a>
+
+      <!-- Desktop & Mobile Navigation Links -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#reels" class="nav-link">Reels</a></li>
+          <li><a href="#gallery" class="nav-link">Gallery</a></li>
+          <li><a href="#contact" class="nav-link">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <!-- Header Actions: Instagram Follow CTA & Mobile Hamburger -->
+      <div class="nav-actions">
+        <a href="https://www.instagram.com/bites.clicks" target="_blank" rel="noopener noreferrer" class="btn-ig-pill" title="Follow @bites.clicks on Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          <span>Follow @bites.clicks</span>
+        </a>
+
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       Hero Section
+       ======================================================================== -->
+  <section class="cinematic-hero-section" id="hero">
+    <!-- Sticky Pinned Viewport Stage (100vh) -->
+    <div class="hero-pinned-stage" id="heroPinnedStage">
+      <!-- Full-screen HTML5 Canvas Background -->
+      <canvas id="heroCanvas" class="hero-canvas"></canvas>
+
+      <!-- Atmospheric Dark/Vignette Overlay for Contrast & Readability -->
+      <div class="canvas-vignette-overlay" aria-hidden="true"></div>
+
+      <!-- Preloader / Progress Indicator for 300-Frame Image Sequence -->
+      <div class="sequence-preloader" id="sequencePreloader" role="status" aria-live="polite">
+        <div class="preloader-spinner"></div>
+        <div class="preloader-text-wrap">
+          <span class="preloader-title">Loading Bites &amp; Clicks Experience</span>
+          <div class="preloader-bar-track">
+            <div class="preloader-bar-fill" id="preloaderBarFill"></div>
+          </div>
+          <span class="preloader-counter" id="preloaderCounter">0%</span>
+        </div>
+      </div>
+
+      <!-- Live Frame Counter & Scroll Progress Indicator (Top Right) -->
+      <div class="scroll-hud-badge" id="scrollHudBadge" aria-hidden="true">
+        <span class="hud-dot"></span>
+        <span class="hud-text" id="hudFrameText">Frame 1 / 300</span>
+      </div>
+
+      <!-- Scroll Down Cue (Bottom Center, fades on scroll) -->
+      <div class="scroll-indicator-cue" id="scrollCue">
+        <div class="mouse-icon">
+          <span class="mouse-wheel"></span>
+        </div>
+        <span class="scroll-cue-text">Scroll to explore sequence</span>
+      </div>
+
+      <!-- Overlays Container: Dynamic Feature Blocks linked to frame count -->
+      <div class="hero-overlays-container container">
+
+        <!-- Intro Welcome Block (Frames 1 - 30) -->
+        <div class="feature-overlay-card intro-brand-overlay" id="overlayIntro">
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            <span>Bites &amp; Clicks &bull; Exploring Food and Sights</span>
+          </div>
+          <h1 class="feature-headline">
+            Exploring <span class="highlight-text">Food and Sights</span>
+          </h1>
+          <p class="feature-subtext">
+            Scroll down to immerse yourself in our 300-frame cinematic journey across Kerala&rsquo;s vibrant backwaters, coastal flavors, and golden horizons.
+          </p>
+        </div>
+
+        <!-- Feature 1 (Frames 1 - 100): "Savor the Flavors" -->
+        <div class="feature-overlay-card" id="overlayFeature1">
+          <span class="feature-step-pill">01 &bull; Culinary Discovery</span>
+          <h2 class="feature-headline">Savor the Flavors</h2>
+          <p class="feature-subtext">
+            Dive into authentic local cuisine, sizzling street food discoveries, aromatic spice trails, and timeless coastal delicacies crafted with rich regional tradition.
+          </p>
+          <div class="feature-tags">
+            <span class="f-tag">🥘 Claypot Fish Curry</span>
+            <span class="f-tag">🌶️ Malabar Spices</span>
+            <span class="f-tag">🫓 Street Food Trails</span>
+          </div>
+        </div>
+
+        <!-- Feature 2 (Frames 101 - 200): "Frame the Beauty" -->
+        <div class="feature-overlay-card" id="overlayFeature2">
+          <span class="feature-step-pill">02 &bull; Visual Wonder</span>
+          <h2 class="feature-headline">Frame the Beauty</h2>
+          <p class="feature-subtext">
+            Capturing stunning landscapes, tranquil backwaters at golden twilight, emerald tea hills, and peaceful palm horizons through our lenses.
+          </p>
+          <div class="feature-tags">
+            <span class="f-tag">🌴 Backwater Sunsets</span>
+            <span class="f-tag">⛰️ Misty Western Ghats</span>
+            <span class="f-tag">🛶 Kettuvallam Journeys</span>
+          </div>
+        </div>
+
+        <!-- Feature 3 (Frames 201 - 300): "Join the Journey" with CTA -->
+        <div class="feature-overlay-card" id="overlayFeature3">
+          <span class="feature-step-pill">03 &bull; Community</span>
+          <h2 class="feature-headline">Join the Journey</h2>
+          <p class="feature-subtext">
+            Be part of our vibrant foodie and photography family. Watch daily reels, uncover hidden gems, and follow our visual voyage on Instagram.
+          </p>
+          <div class="feature-cta-group">
+            <a href="https://www.instagram.com/bites.clicks" target="_blank" rel="noopener noreferrer" class="btn-primary feature-ig-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+              <span>Follow @bites.clicks</span>
+            </a>
+            <a href="#about" class="btn-secondary feature-explore-btn">
+              <span>Read Our Story</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Hero Community Statistics inside Feature 3 -->
+          <div class="feature-stats-row">
+            <div class="f-stat-item">
+              <span class="f-stat-num">45K+</span>
+              <span class="f-stat-lbl">Community</span>
+            </div>
+            <div class="f-stat-item">
+              <span class="f-stat-num">120+</span>
+              <span class="f-stat-lbl">Food Spots</span>
+            </div>
+            <div class="f-stat-item">
+              <span class="f-stat-num">85+</span>
+              <span class="f-stat-lbl">Scenic Sights</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       About Us Section
+       ======================================================================== -->
+  <section class="section about-section" id="about">
+    <div class="container">
+      <div class="section-header-center">
+        <span class="section-tag">Our Passion &amp; People</span>
+        <h2 class="section-title">The Story Behind Bites &amp; Clicks</h2>
+        <p class="section-desc">
+          Bites &amp; Clicks is a passion project dedicated to capturing the very best of local food and scenic photography. We traverse coastal roads, bustling spice markets, and peaceful waterways to bring the soul of our homeland to your screens.
+        </p>
+      </div>
+
+      <div class="about-intro-grid">
+        <div class="about-story">
+          <p>
+            What began as an unspoken love for sizzling clay pots, aromatic biryanis, and sun-drenched palm groves quickly blossomed into <strong>Bites &amp; Clicks</strong>. We believe that every dish tells a story of heritage, and every horizon holds a frame worth freezing in time.
+          </p>
+          <div class="about-quote">
+            &ldquo;One bite brings you home. One click captures the moment forever.&rdquo;
+          </div>
+          <p>
+            Whether uncovering a remote backwater toddy shop serving legendary spicy prawns or hiking up misty tea estates at dawn, our mission is to celebrate authentic culture through unadulterated flavors and compelling visual cinematography.
+          </p>
+        </div>
+
+        <div class="about-pillars">
+          <div class="pillar-card">
+            <div class="pillar-icon-box">🍽️</div>
+            <div>
+              <h3 class="pillar-title">Culinary Discovery</h3>
+              <p class="pillar-desc">Honest tastings of authentic regional delicacies, street food hubs, cozy cafes, and hidden family recipes.</p>
+            </div>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-icon-box">🌅</div>
+            <div>
+              <h3 class="pillar-title">Scenic Cinematography</h3>
+              <p class="pillar-desc">Golden hour reflections, coconut tree horizons, mist-shrouded ghats, and aerial perspectives that evoke wanderlust.</p>
+            </div>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-icon-box">📱</div>
+            <div>
+              <h3 class="pillar-title">Creator Community</h3>
+              <p class="pillar-desc">Connecting travelers, food lovers, and aesthetic connoisseurs across Kerala and the world on Instagram.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Specific Team Credits as explicitly requested -->
+      <div class="team-section-heading">
+        <span class="section-tag">The Creative Minds</span>
+        <h3 class="section-title">Meet The Team</h3>
+        <p class="section-desc" style="margin: 0 auto;">
+          The passionate trio bringing the vision, visual magic, and digital experience of Bites &amp; Clicks alive.
+        </p>
+      </div>
+
+      <div class="team-grid">
+        <!-- Mazin KC: Master of the Project -->
+        <article class="team-card lead-card">
+          <div class="team-avatar-box">
+            <img src="img1.jpg" alt="Mazin KC - Master of the Project" class="team-avatar-img">
+          </div>
+          <span class="team-role-badge role-master">Master of the Project</span>
+          <h4 class="team-name">Mazin KC</h4>
+          <span class="team-tagline">Visionary Lead &amp; Creative Producer</span>
+          <p class="team-bio">
+            The driving force and mastermind guiding Bites &amp; Clicks. Mazin steers the project's creative direction, scouting the most authentic food gems and scenic destinations across the region.
+          </p>
+        </article>
+
+        <!-- Anzil: Videographer -->
+        <article class="team-card">
+          <div class="team-avatar-box">
+            <span class="team-avatar-icon">🎥</span>
+          </div>
+          <span class="team-role-badge role-video">Lead Videographer</span>
+          <h4 class="team-name">Anzil</h4>
+          <span class="team-tagline">Cinematographer &amp; Visual Storyteller</span>
+          <p class="team-bio">
+            The eye behind the camera lens. Anzil turns sizzling street pans and golden backwater sunsets into hypnotic, high-octane reels and captivating video sequences that thrill thousands.
+          </p>
+        </article>
+
+        <!-- Sinan PC: Designed & Created the Website -->
+        <article class="team-card">
+          <div class="team-avatar-box">
+            <span class="team-avatar-icon">💻</span>
+          </div>
+          <span class="team-role-badge role-web">Web Designer &amp; Creator</span>
+          <h4 class="team-name">Sinan PC</h4>
+          <span class="team-tagline">Digital Experience Architect</span>
+          <p class="team-bio">
+            Designed &amp; created this website for Bites &amp; Clicks. Sinan engineered the warm earthy aesthetic, seamless mobile responsiveness, and interactive social media integration for our digital home.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Instagram Reels Section (Vertical 9:16 Format)
+       ======================================================================== -->
+  <section class="section reels-section" id="reels">
+    <div class="container">
+      <div class="section-header-center">
+        <span class="section-tag">Trending Reels</span>
+        <h2 class="section-title">Vertical Stories &amp; Cinematic Reels</h2>
+        <p class="section-desc">
+          Bite-sized visual journeys crafted in vertical format for the mobile generation. Tap to preview and watch them directly on Instagram.
+        </p>
+      </div>
+
+      <!-- Controls: Carousel / Grid Switcher & Nav Arrows -->
+      <div class="reels-controls-bar">
+        <div class="reels-view-toggle" role="tablist" aria-label="Reels layout view">
+          <button class="view-btn active" data-view="carousel" aria-label="Horizontal scroll view">⇄ Scroll Carousel</button>
+          <button class="view-btn" data-view="grid" aria-label="Grid layout view">⊞ Full Grid</button>
+        </div>
+
+        <div class="carousel-nav-btns">
+          <button class="nav-arrow-btn" id="reelsPrevBtn" aria-label="Previous reel">&larr;</button>
+          <button class="nav-arrow-btn" id="reelsNextBtn" aria-label="Next reel">&rarr;</button>
+        </div>
+      </div>
+
+      <!-- Reels Carousel / Grid Container -->
+      <div class="reels-carousel-wrapper" id="reelsCarouselWrapper">
+        <div class="reels-container" id="reelsContainer">
+
+          <!-- Reel 1: Kerala Backwater Sunset Boat Cruise -->
+          <article class="reel-card" 
+                   data-title="Sunset Serenade on Alleppey Backwaters" 
+                   data-location="Alappuzha, Kerala" 
+                   data-likes="3.4K"
+                   data-caption="Gliding through the golden waters as the sun dips below the coconut palms. There's pure serenity in the Kerala waterways. Captured by Anzil. #BitesAndClicks #KeralaReels #Wanderlust"
+                   data-modal-img="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=720&q=80"
+                   data-ig-url="https://www.instagram.com/bites.clicks">
+            <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=720&q=80" alt="Backwater Sunset Reel" class="reel-poster-img" loading="lazy">
+            <div class="reel-gradient-overlay"></div>
+
+            <div class="reel-top-bar">
+              <span class="reel-badge">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                Reel
+              </span>
+              <span style="font-size: 0.8rem; color: #FFF; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">👁️ 18.2K</span>
+            </div>
+
+            <div class="reel-play-btn" aria-hidden="true">&#9658;</div>
+
+            <div class="reel-bottom-info">
+              <div class="reel-creator">
+                <img src="img1.jpg" alt="@bites.clicks" class="reel-creator-img">
+                <span class="reel-creator-handle">@bites.clicks</span>
+              </div>
+              <p class="reel-caption">Gliding through the golden waters as the sun dips below the coconut palms...</p>
+              <div class="reel-audio-bar">
+                <span class="reel-audio-icon">🎵</span>
+                <span>Original Audio &bull; bites.clicks</span>
+              </div>
+              <div class="reel-metrics">
+                <span class="reel-metric-item">❤️ 3.4K</span>
+                <span class="reel-metric-item">💬 142</span>
+                <span class="reel-metric-item">↗️ Share</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Reel 2: Sizzling Street Food Parotta & Beef Roast -->
+          <article class="reel-card" 
+                   data-title="Hot Flaky Malabar Parotta &amp; Spicy Roast" 
+                   data-location="Calicut Beach Road, Kerala" 
+                   data-likes="5.8K"
+                   data-caption="The rhythm of the tawa, the flying layers of parotta, and that deep roasted coconut spice aroma. A late-night food trail you won't forget. #MalabarBites #FoodPorn #BitesAndClicks"
+                   data-modal-img="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=720&q=80"
+                   data-ig-url="https://www.instagram.com/bites.clicks">
+            <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=720&q=80" alt="Sizzling Street Food Reel" class="reel-poster-img" loading="lazy">
+            <div class="reel-gradient-overlay"></div>
+
+            <div class="reel-top-bar">
+              <span class="reel-badge">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                Reel
+              </span>
+              <span style="font-size: 0.8rem; color: #FFF; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">👁️ 34.6K</span>
+            </div>
+
+            <div class="reel-play-btn" aria-hidden="true">&#9658;</div>
+
+            <div class="reel-bottom-info">
+              <div class="reel-creator">
+                <img src="img1.jpg" alt="@bites.clicks" class="reel-creator-img">
+                <span class="reel-creator-handle">@bites.clicks</span>
+              </div>
+              <p class="reel-caption">The rhythm of the tawa and flying layers of flaky parotta late at night...</p>
+              <div class="reel-audio-bar">
+                <span class="reel-audio-icon">🎵</span>
+                <span>Trending Beats &bull; Calicut Nights</span>
+              </div>
+              <div class="reel-metrics">
+                <span class="reel-metric-item">❤️ 5.8K</span>
+                <span class="reel-metric-item">💬 319</span>
+                <span class="reel-metric-item">↗️ Share</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Reel 3: Misty Tea Gardens of Munnar Sunrise -->
+          <article class="reel-card" 
+                   data-title="Chasing Morning Mist in Munnar" 
+                   data-location="Munnar Western Ghats, Kerala" 
+                   data-likes="4.1K"
+                   data-caption="5:30 AM wake up call to witness the mist rolling over emerald tea hills. Breathing in pure fresh mountain air. Cinematography by Anzil. #Munnar #NatureClicks #BitesAndClicks"
+                   data-modal-img="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=720&q=80"
+                   data-ig-url="https://www.instagram.com/bites.clicks">
+            <img src="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=720&q=80" alt="Munnar Sunrise Reel" class="reel-poster-img" loading="lazy">
+            <div class="reel-gradient-overlay"></div>
+
+            <div class="reel-top-bar">
+              <span class="reel-badge">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                Reel
+              </span>
+              <span style="font-size: 0.8rem; color: #FFF; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">👁️ 22.8K</span>
+            </div>
+
+            <div class="reel-play-btn" aria-hidden="true">&#9658;</div>
+
+            <div class="reel-bottom-info">
+              <div class="reel-creator">
+                <img src="img1.jpg" alt="@bites.clicks" class="reel-creator-img">
+                <span class="reel-creator-handle">@bites.clicks</span>
+              </div>
+              <p class="reel-caption">5:30 AM mist rolling over emerald tea hills in the Western Ghats...</p>
+              <div class="reel-audio-bar">
+                <span class="reel-audio-icon">🎵</span>
+                <span>Chill Vibes &bull; Dawn Melody</span>
+              </div>
+              <div class="reel-metrics">
+                <span class="reel-metric-item">❤️ 4.1K</span>
+                <span class="reel-metric-item">💬 188</span>
+                <span class="reel-metric-item">↗️ Share</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Reel 4: Fresh Clay Pot Fish Curry & Matta Rice -->
+          <article class="reel-card" 
+                   data-title="Claypot Meen Curry by the Lake" 
+                   data-location="Kumarakom Lake, Kerala" 
+                   data-likes="6.2K"
+                   data-caption="Fiery red Kashmiri chillies, fresh kokum, and freshly caught pearl spot (Karimeen) simmering in a traditional clay pot. Heaven on a banana leaf! #KeralaSadhya #MeenCurry #FoodStories"
+                   data-modal-img="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=720&q=80"
+                   data-ig-url="https://www.instagram.com/bites.clicks">
+            <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=720&q=80" alt="Clay Pot Meen Curry Reel" class="reel-poster-img" loading="lazy">
+            <div class="reel-gradient-overlay"></div>
+
+            <div class="reel-top-bar">
+              <span class="reel-badge">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                Reel
+              </span>
+              <span style="font-size: 0.8rem; color: #FFF; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">👁️ 41.5K</span>
+            </div>
+
+            <div class="reel-play-btn" aria-hidden="true">&#9658;</div>
+
+            <div class="reel-bottom-info">
+              <div class="reel-creator">
+                <img src="img1.jpg" alt="@bites.clicks" class="reel-creator-img">
+                <span class="reel-creator-handle">@bites.clicks</span>
+              </div>
+              <p class="reel-caption">Fiery red kokum meen curry simmering in an earthy claypot by the lake...</p>
+              <div class="reel-audio-bar">
+                <span class="reel-audio-icon">🎵</span>
+                <span>Folk Rhythm &bull; Kerala Flavors</span>
+              </div>
+              <div class="reel-metrics">
+                <span class="reel-metric-item">❤️ 6.2K</span>
+                <span class="reel-metric-item">💬 405</span>
+                <span class="reel-metric-item">↗️ Share</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Reel 5: Golden Hour Waves at Varkala Cliff -->
+          <article class="reel-card" 
+                   data-title="Golden Hour Waves at Varkala Cliff" 
+                   data-location="Varkala Cliff Beach, Kerala" 
+                   data-likes="3.9K"
+                   data-caption="Watching red laterite cliffs melt into the Arabian sea at sunset. Unmatched coastal vibes. #Varkala #SunsetClicks #BitesAndClicks"
+                   data-modal-img="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=720&q=80"
+                   data-ig-url="https://www.instagram.com/bites.clicks">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=720&q=80" alt="Varkala Cliff Beach Reel" class="reel-poster-img" loading="lazy">
+            <div class="reel-gradient-overlay"></div>
+
+            <div class="reel-top-bar">
+              <span class="reel-badge">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                Reel
+              </span>
+              <span style="font-size: 0.8rem; color: #FFF; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">👁️ 19.7K</span>
+            </div>
+
+            <div class="reel-play-btn" aria-hidden="true">&#9658;</div>
+
+            <div class="reel-bottom-info">
+              <div class="reel-creator">
+                <img src="img1.jpg" alt="@bites.clicks" class="reel-creator-img">
+                <span class="reel-creator-handle">@bites.clicks</span>
+              </div>
+              <p class="reel-caption">Red laterite cliffs melting into the azure Arabian Sea at golden hour...</p>
+              <div class="reel-audio-bar">
+                <span class="reel-audio-icon">🎵</span>
+                <span>Ocean Waves &bull; Ambient Drift</span>
+              </div>
+              <div class="reel-metrics">
+                <span class="reel-metric-item">❤️ 3.9K</span>
+                <span class="reel-metric-item">💬 163</span>
+                <span class="reel-metric-item">↗️ Share</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Actual Instagram Media Embed Integration Wrapper -->
+      <div class="instagram-embed-wrapper">
+        <div class="embed-banner-header">
+          <div class="embed-banner-title">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--ig-color)"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <span>Live Social Media Feed</span>
+          </div>
+          <a href="https://www.instagram.com/bites.clicks" target="_blank" rel="noopener noreferrer" class="btn-ig-pill">
+            <span>Open @bites.clicks</span>
+          </a>
+        </div>
+
+        <div class="embed-grid-row">
+          <!-- Standard Instagram Embed Blockquote Container -->
+          <div class="instagram-embed-box">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/bites.clicks" data-instgrm-version="14" style="background:#FAF6EE; border:0; border-radius:16px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:calc(100% - 2px);">
+              <div style="padding:16px;">
+                <a href="https://www.instagram.com/bites.clicks" style="background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%; display:block;" target="_blank" rel="noopener noreferrer">
+                  <div style="display: flex; flex-direction: row; align-items: center; padding: 12px; gap: 10px;">
+                    <img src="img1.jpg" style="border-radius: 50%; width: 44px; height: 44px; object-fit: cover;" alt="Bites &amp; Clicks">
+                    <div style="text-align: left;">
+                      <div style="font-weight: 700; color: #3B2C24; font-family: sans-serif;">bites.clicks</div>
+                      <div style="font-size: 12px; color: #8E7B70;">Exploring Food and Sights &bull; Kerala</div>
+                    </div>
+                  </div>
+                  <div style="padding: 19% 0;"></div>
+                  <div style="display:block; height:50px; margin:0 auto 12px; width:50px;">
+                    <svg width="50" height="50" viewBox="0 0 60 60"><g fill="none" fill-rule="evenodd"><g fill="var(--ig-color)"><path d="M30 0C13.432 0 0 13.432 0 30c0 16.568 13.432 30 30 30 16.568 0 30-13.432 30-30 0-16.568-13.432-30-30-30zm0 46.5c-9.113 0-16.5-7.387-16.5-16.5S20.887 13.5 30 13.5s16.5 7.387 16.5 16.5-7.387 16.5-16.5 16.5z"/></g></g></svg>
+                  </div>
+                  <div style="padding-top: 8px;">
+                    <div style="color: #3897f0; font-family:Arial,sans-serif; font-size:14px; font-weight:600; line-height:18px;">View this post on Instagram</div>
+                  </div>
+                </a>
+              </div>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Gallery (Photos & Videos) Section
+       ======================================================================== -->
+  <section class="section gallery-section" id="gallery">
+    <div class="container">
+      <div class="section-header-center">
+        <span class="section-tag">Visual Feasts</span>
+        <h2 class="section-title">The Bites &amp; Clicks Gallery</h2>
+        <p class="section-desc">
+          A synchronized showcase of our photography expeditions and gourmet tastings. Filter through savory delights, tropical landscapes, and local cafe culture.
+        </p>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="gallery-filter-tabs" role="tablist" aria-label="Gallery category filter">
+        <button class="filter-tab active" data-filter="all">All Explorations</button>
+        <button class="filter-tab" data-filter="food">Food Bites 🍛</button>
+        <button class="filter-tab" data-filter="scenic">Scenic Sights 🌴</button>
+        <button class="filter-tab" data-filter="cafe">Cafes &amp; Street Food ☕</button>
+        <button class="filter-tab" data-filter="sunset">Backwaters &amp; Sunset 🌅</button>
+      </div>
+
+      <!-- Responsive CSS Masonry / Grid -->
+      <div class="gallery-grid" id="galleryGrid">
+
+        <!-- Item 1: Traditional Kerala Sadhya Feast (Food) -->
+        <article class="gallery-item" data-category="food" 
+                 data-title="Grand Traditional Kerala Sadhya"
+                 data-location="Thrissur, Kerala"
+                 data-likes="4.9K"
+                 data-caption="24 mouth-watering curries served on a vibrant green plantain leaf. From sweet payasam to crunchy sharkara varatti — the ultimate feast! #KeralaSadhya #AuthenticBites #BitesAndClicks"
+                 data-modal-img="https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?auto=format&fit=crop&w=900&q=80"
+                 data-ig-url="https://www.instagram.com/bites.clicks">
+          <div class="gallery-media-wrap">
+            <span class="gallery-type-badge">📷 Photo</span>
+            <img src="https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?auto=format&fit=crop&w=800&q=80" alt="Traditional Kerala Sadhya on Banana Leaf" class="gallery-img" loading="lazy">
+            <div class="gallery-hover-overlay">
+              <span class="gallery-hover-icon">🔍</span>
+              <span class="gallery-hover-text">View Full Story</span>
+            </div>
+          </div>
+          <div class="gallery-content-card">
+            <div class="gallery-item-header">
+              <div class="gallery-account-tag">
+                <img src="img1.jpg" alt="@bites.clicks" class="gallery-avatar">
+                <span>bites.clicks</span>
+              </div>
+              <span class="gallery-location">📍 Thrissur</span>
+            </div>
+            <p class="gallery-item-caption">24 traditional curries on a fresh banana leaf. The royal flavors of Kerala!</p>
+            <div class="gallery-item-footer">
+              <div class="gallery-stats">
+                <span class="gallery-stat">❤️ 4.9K</span>
+                <span class="gallery-stat">💬 218</span>
+              </div>
+              <span class="gallery-open-link">Instagram &rarr;</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 2: Alleppey Houseboat at Sunset (Scenic / Sunset) -->
+        <article class="gallery-item" data-category="scenic sunset"
+                 data-title="Kettuvallam Houseboat Twilight"
+                 data-location="Alappuzha Backwaters"
+                 data-likes="5.2K"
+                 data-caption="The iconic Kerala houseboat floating on calm glassy waters under an amber twilight. Captured by Anzil. Masterminded by Mazin KC. #HouseboatLife #KeralaGodsOwnCountry #Backwaters"
+                 data-modal-img="https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=900&q=80"
+                 data-ig-url="https://www.instagram.com/bites.clicks">
+          <div class="gallery-media-wrap">
+            <span class="gallery-type-badge">🌴 Scenic</span>
+            <img src="https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=800&q=80" alt="Alappuzha Houseboat Twilight" class="gallery-img" loading="lazy">
+            <div class="gallery-hover-overlay">
+              <span class="gallery-hover-icon">🔍</span>
+              <span class="gallery-hover-text">View Full Story</span>
+            </div>
+          </div>
+          <div class="gallery-content-card">
+            <div class="gallery-item-header">
+              <div class="gallery-account-tag">
+                <img src="img1.jpg" alt="@bites.clicks" class="gallery-avatar">
+                <span>bites.clicks</span>
+              </div>
+              <span class="gallery-location">📍 Alleppey</span>
+            </div>
+            <p class="gallery-item-caption">Floating through tranquil backwaters under an amber sky. Pure magic.</p>
+            <div class="gallery-item-footer">
+              <div class="gallery-stats">
+                <span class="gallery-stat">❤️ 5.2K</span>
+                <span class="gallery-stat">💬 195</span>
+              </div>
+              <span class="gallery-open-link">Instagram &rarr;</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 3: Aromatic Malabar Dum Biryani (Food / Cafe) -->
+        <article class="gallery-item" data-category="food cafe"
+                 data-title="Thalassery Spiced Dum Biryani"
+                 data-location="Thalassery, North Malabar"
+                 data-likes="6.7K"
+                 data-caption="Khyma rice infused with pure ghee, tender meat, fried onions, and sultanas. Sealing the pot with dough to lock in every note of spice. #MalabarBiryani #BiryaniLovers #BitesAndClicks"
+                 data-modal-img="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=900&q=80"
+                 data-ig-url="https://www.instagram.com/bites.clicks">
+          <div class="gallery-media-wrap">
+            <span class="gallery-type-badge">🥘 Food</span>
+            <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80" alt="Malabar Dum Biryani" class="gallery-img" loading="lazy">
+            <div class="gallery-hover-overlay">
+              <span class="gallery-hover-icon">🔍</span>
+              <span class="gallery-hover-text">View Full Story</span>
+            </div>
+          </div>
+          <div class="gallery-content-card">
+            <div class="gallery-item-header">
+              <div class="gallery-account-tag">
+                <img src="img1.jpg" alt="@bites.clicks" class="gallery-avatar">
+                <span>bites.clicks</span>
+              </div>
+              <span class="gallery-location">📍 Thalassery</span>
+            </div>
+            <p class="gallery-item-caption">Fragrant short-grain Khyma rice with rich spices and caramelized onions.</p>
+            <div class="gallery-item-footer">
+              <div class="gallery-stats">
+                <span class="gallery-stat">❤️ 6.7K</span>
+                <span class="gallery-stat">💬 430</span>
+              </div>
+              <span class="gallery-open-link">Instagram &rarr;</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 4: Misty Western Ghats Mountain Pass (Scenic) -->
+        <article class="gallery-item" data-category="scenic"
+                 data-title="Misty Roads of Wayanad Ghats"
+                 data-location="Thamarassery Churam, Wayanad"
+                 data-likes="4.5K"
+                 data-caption="9 hairpin bends through clouds and dense rainforest canopy. An exhilarating drive with coffee aroma everywhere. #Wayanad #Rainforest #ScenicClicks"
+                 data-modal-img="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80"
+                 data-ig-url="https://www.instagram.com/bites.clicks">
+          <div class="gallery-media-wrap">
+            <span class="gallery-type-badge">⛰️ Scenic</span>
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Wayanad Western Ghats Rainforest" class="gallery-img" loading="lazy">
+            <div class="gallery-hover-overlay">
+              <span class="gallery-hover-icon">🔍</span>
+              <span class="gallery-hover-text">View Full Story</span>
+            </div>
+          </div>
+          <div class="gallery-content-card">
+            <div class="gallery-item-header">
+              <div class="gallery-account-tag">
+                <img src="img1.jpg" alt="@bites.clicks" class="gallery-avatar">
+                <span>bites.clicks</span>
+              </div>
+              <span class="gallery-location">📍 Wayanad</span>
+            </div>
+            <p class="gallery-item-caption">Hairpin curves hugging misty green peaks and untouched valleys.</p>
+            <div class="gallery-item-footer">
+              <div class="gallery-stats">
+                <span class="gallery-stat">❤️ 4.5K</span>
+                <span class="gallery-stat">💬 177</span>
+              </div>
+              <span class="gallery-open-link">Instagram &rarr;</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 5: South Indian Filter Kaapi & Crispy Snacks (Cafe / Food) -->
+        <article class="gallery-item" data-category="food cafe"
+                 data-title="Steaming Brass Meter Coffee"
+                 data-location="Fort Kochi Heritage Cafe"
+                 data-likes="3.8K"
+                 data-caption="Frothy, dark, chicory-infused filter coffee poured from meter-high brass tumblers alongside warm banana fritters (Pazham Pori). #FilterCoffee #FortKochi #CafeCulture"
+                 data-modal-img="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=900&q=80"
+                 data-ig-url="https://www.instagram.com/bites.clicks">
+          <div class="gallery-media-wrap">
+            <span class="gallery-type-badge">☕ Cafe</span>
+            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80" alt="Steaming Coffee and Cafe Vibe" class="gallery-img" loading="lazy">
+            <div class="gallery-hover-overlay">
+              <span class="gallery-hover-icon">🔍</span>
+              <span class="gallery-hover-text">View Full Story</span>
+            </div>
+          </div>
+          <div class="gallery-content-card">
+            <div class="gallery-item-header">
+              <div class="gallery-account-tag">
+                <img src="img1.jpg" alt="@bites.clicks" class="gallery-avatar">
+                <span>bites.clicks</span>
+              </div>
+              <span class="gallery-location">📍 Fort Kochi</span>
+            </div>
+            <p class="gallery-item-caption">Frothy chicory brew poured into traditional brass davara tumblers.</p>
+            <div class="gallery-item-footer">
+              <div class="gallery-stats">
+                <span class="gallery-stat">❤️ 3.8K</span>
+                <span class="gallery-stat">💬 140</span>
+              </div>
+              <span class="gallery-open-link">Instagram &rarr;</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 6: Marari Beach Sunset & Fishing Boats (Sunset / Scenic) -->
+        <article class="gallery-item" data-category="scenic sunset"
+                 data-title="Fishermen Returning at Sunset"
+                 data-location="Marari Beach, Kerala"
+                 data-likes="5.6K"
+                 data-caption="Wooden country craft beached against a canvas of fiery amber and violet. The rhythm of coastal life at its most peaceful. #MarariBeach #SunsetPhotography #BitesAndClicks"
+                 data-modal-img="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=900&q=80"
+                 data-ig-url="https://www.instagram.com/bites.clicks">
+          <div class="gallery-media-wrap">
+            <span class="gallery-type-badge">🌅 Sunset</span>
+            <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80" alt="Beach Sunset with Boats" class="gallery-img" loading="lazy">
+            <div class="gallery-hover-overlay">
+              <span class="gallery-hover-icon">🔍</span>
+              <span class="gallery-hover-text">View Full Story</span>
+            </div>
+          </div>
+          <div class="gallery-content-card">
+            <div class="gallery-item-header">
+              <div class="gallery-account-tag">
+                <img src="img1.jpg" alt="@bites.clicks" class="gallery-avatar">
+                <span>bites.clicks</span>
+              </div>
+              <span class="gallery-location">📍 Marari Beach</span>
+            </div>
+            <p class="gallery-item-caption">Silhouette of rustic wooden catamarans against the blazing ocean sunset.</p>
+            <div class="gallery-item-footer">
+              <div class="gallery-stats">
+                <span class="gallery-stat">❤️ 5.6K</span>
+                <span class="gallery-stat">💬 288</span>
+              </div>
+              <span class="gallery-open-link">Instagram &rarr;</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Instagram Feed Sync Banner
+       ======================================================================== -->
+  <section class="ig-banner-section" aria-label="Instagram Sync Callout">
+    <div class="container">
+      <div class="ig-sync-box">
+        <div class="ig-sync-left">
+          <div class="ig-sync-avatar">
+            <img src="img1.jpg" alt="Bites &amp; Clicks Profile Picture">
+          </div>
+          <div class="ig-sync-info">
+            <h3>Follow @bites.clicks on Instagram</h3>
+            <p>
+              Daily reels, behind-the-scenes food expeditions, and scenic photography highlights straight from Kerala and beyond. Stay connected!
+            </p>
+          </div>
+        </div>
+
+        <div class="ig-sync-actions">
+          <a href="https://www.instagram.com/bites.clicks" target="_blank" rel="noopener noreferrer" class="btn-ig-pill">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <span>Follow @bites.clicks</span>
+          </a>
+          <a href="#contact" class="btn-secondary">
+            <span>Collaborate With Us</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Contact Us Section
+       ======================================================================== -->
+  <section class="section contact-section" id="contact">
+    <div class="container">
+      <div class="section-header-center">
+        <span class="section-tag">Get in Touch</span>
+        <h2 class="section-title">Let's Connect &amp; Collaborate</h2>
+        <p class="section-desc">
+          Have a unique food spot you'd like us to feature? Want to partner for hospitality promotions or photography shoots? Drop us a line!
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Left: Contact Details & Mailto Link -->
+        <div class="contact-info-card">
+          <h3 class="contact-info-title">Say Hello to Bites &amp; Clicks</h3>
+          <p class="contact-info-desc">
+            We love meeting fellow food lovers, cafe owners, travelers, and brand creators. You can reach out directly via email or our Instagram DM.
+          </p>
+
+          <div class="contact-methods">
+            <!-- Clickable Email mailto link as requested -->
+            <div class="contact-method-item">
+              <div class="contact-icon-circle">✉️</div>
+              <div class="contact-method-details">
+                <h4>Email Us Directly</h4>
+                <a href="mailto:bites.clicks@gmail.com" class="contact-link" title="Send email to bites.clicks@gmail.com">
+                  bites.clicks@gmail.com
+                </a>
+              </div>
+            </div>
+
+            <!-- Instagram Handle Link -->
+            <div class="contact-method-item">
+              <div class="contact-icon-circle">📸</div>
+              <div class="contact-method-details">
+                <h4>Official Instagram Page</h4>
+                <a href="https://www.instagram.com/bites.clicks" target="_blank" rel="noopener noreferrer" class="contact-link">
+                  instagram.com/bites.clicks
+                </a>
+              </div>
+            </div>
+
+            <!-- Location -->
+            <div class="contact-method-item">
+              <div class="contact-icon-circle">📍</div>
+              <div class="contact-method-details">
+                <h4>Headquarters &amp; Exploration Base</h4>
+                <span class="contact-link" style="cursor: default;">Kerala, India</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Media Icons linking to Instagram -->
+          <div class="contact-social-block">
+            <h4 class="contact-social-label">Follow &amp; Message Us</h4>
+            <div class="social-links-row">
+              <a href="https://www.instagram.com/bites.clicks" target="_blank" rel="noopener noreferrer" class="social-circle-btn ig-btn" aria-label="Follow Bites &amp; Clicks on Instagram">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </a>
+              <a href="mailto:bites.clicks@gmail.com" class="social-circle-btn mail-btn" aria-label="Email Bites &amp; Clicks">
+                ✉️
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Clean Contact Form -->
+        <div class="contact-form-card">
+          <form id="contactForm" action="process_feedback.php" method="POST" novalidate>
+            <div class="form-group">
+              <label for="contactName" class="form-label">Your Name *</label>
+              <input type="text" id="contactName" name="name" class="form-control" placeholder="e.g. John Doe" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contactEmail" class="form-label">Your Email Address *</label>
+              <input type="email" id="contactEmail" name="email" class="form-control" placeholder="e.g. john@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contactSubject" class="form-label">Inquiry Purpose</label>
+              <select id="contactSubject" name="subject" class="form-control">
+                <option value="Food Review Suggestion">Suggest a Food Spot / Restaurant Review</option>
+                <option value="Brand Collaboration">Brand Promotion / Collaboration</option>
+                <option value="Photography & Reel Project">Cinematography &amp; Photography Project</option>
+                <option value="General Greetings">General Question &amp; Greetings</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="contactFeedback" class="form-label">Feedback or Message *</label>
+              <textarea id="contactFeedback" name="feedback" class="form-control" placeholder="Share your suggestions, review, or collaboration idea..." required></textarea>
+            </div>
+
+            <button type="submit" class="form-submit-btn">
+              <span>Send Message</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+
+            <div class="form-feedback" id="formFeedback" role="alert"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Interactive Lightbox Modal for Reels & Gallery Items
+       ======================================================================== -->
+  <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Media Preview">
+    <div class="lightbox-card">
+      <div class="lightbox-media-container" id="lightboxMediaContainer">
+        <!-- Injected via script.js -->
+      </div>
+      <div class="lightbox-info-container">
+        <div class="lightbox-header">
+          <div class="lightbox-profile">
+            <img src="img1.jpg" alt="@bites.clicks avatar" class="lightbox-avatar">
+            <div>
+              <div class="lightbox-user-name">bites.clicks</div>
+              <div class="lightbox-user-sub" id="lightboxUserSub">Kerala, India</div>
+            </div>
+          </div>
+          <button class="lightbox-close-btn" id="lightboxClose" aria-label="Close modal">&times;</button>
+        </div>
+
+        <div class="lightbox-caption" id="lightboxCaption">
+          <!-- Injected via script.js -->
+        </div>
+
+        <div class="lightbox-actions">
+          <button class="lightbox-like-btn" id="lightboxLikeBtn">
+            <span>❤️</span>
+            <span id="lightboxLikeCount">1.8K</span>
+          </button>
+          <button class="lightbox-share-btn" id="lightboxShareBtn" title="Copy Link">
+            <span>🔗 Share</span>
+          </button>
+          <a href="https://www.instagram.com/bites.clicks" target="_blank" rel="noopener noreferrer" class="lightbox-ig-btn" id="lightboxIgLink">
+            <span>View on Instagram</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       Footer
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand Info -->
+        <div class="footer-brand">
+          <div class="footer-logo-row">
+            <img src="img1.jpg" alt="Bites &amp; Clicks" class="footer-logo-img">
+            <span class="footer-brand-name">Bites &amp; Clicks</span>
+          </div>
+          <p class="footer-desc">
+            A passion project dedicated to showcasing the authentic food culture, rich traditions, and breathtaking landscapes of Kerala and beyond.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="footer-col-title">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#hero" class="footer-link">Home</a></li>
+            <li><a href="#about" class="footer-link">About Us</a></li>
+            <li><a href="#reels" class="footer-link">Instagram Reels</a></li>
+            <li><a href="#gallery" class="footer-link">Visual Gallery</a></li>
+            <li><a href="#contact" class="footer-link">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Project Creators & Roles (As requested) -->
+        <div>
+          <h4 class="footer-col-title">Project Team</h4>
+          <ul class="footer-team-list">
+            <li class="footer-team-member">
+              <span class="footer-member-name">Mazin KC</span>
+              <span class="footer-member-role">Master of the Project</span>
+            </li>
+            <li class="footer-team-member">
+              <span class="footer-member-name">Anzil</span>
+              <span class="footer-member-role">Lead Videographer</span>
+            </li>
+            <li class="footer-team-member">
+              <span class="footer-member-name">Sinan PC</span>
+              <span class="footer-member-role">Website Designer &amp; Creator</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Connect -->
+        <div>
+          <h4 class="footer-col-title">Connect</h4>
+          <ul class="footer-links">
+            <li>
+              <a href="https://www.instagram.com/bites.clicks" target="_blank" rel="noopener noreferrer" class="footer-link">
+                📸 @bites.clicks
+              </a>
+            </li>
+            <li>
+              <a href="mailto:bites.clicks@gmail.com" class="footer-link">
+                ✉️ bites.clicks@gmail.com
+              </a>
+            </li>
+            <li style="margin-top: 0.5rem; font-size: 0.85rem; color: #A39183;">
+              Kerala, India
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p>&copy; 2026 Bites &amp; Clicks. All rights reserved. Designed &amp; Created by Sinan PC.</p>
+        <a href="#hero" class="footer-back-to-top">
+          <span>Back to Top</span>
+          <span>&uarr;</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Official Instagram Embed Processing Script -->
+  <script async src="//www.instagram.com/embed.js"></script>
+
+  <!-- Interactive Script -->
+  <script src="script.js"></script>
+</body>
+</html>
