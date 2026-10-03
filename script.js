@@ -55,7 +55,6 @@ function initCinematicHero() {
   const overlayIntro = document.getElementById('overlayIntro');
   const overlay1 = document.getElementById('overlayFeature1');
   const overlay2 = document.getElementById('overlayFeature2');
-  const overlay3 = document.getElementById('overlayFeature3');
 
   const TOTAL_FRAMES = 300;
   const frames = new Array(TOTAL_FRAMES + 1);
@@ -237,10 +236,14 @@ function initCinematicHero() {
     if (scrollCue) {
       scrollCue.style.opacity = frame > 10 ? '0' : '1';
     }
-    updateOverlayState(overlayIntro, frame, 1, 1, 20, 32);
-    updateOverlayState(overlay1, frame, 25, 40, 85, 100);
-    updateOverlayState(overlay2, frame, 101, 120, 180, 200);
-    updateOverlayState(overlay3, frame, 201, 220, 300, 300);
+    // Welcome Intro: Frames 1 - 42
+    updateOverlayState(overlayIntro, frame, 1, 1, 28, 42);
+
+    // 01 • Culinary Discovery ("Bites"): Frames 38 - 162
+    updateOverlayState(overlay1, frame, 38, 55, 140, 162);
+
+    // 02 • Visual Wonder ("Clicks"): Frames 158 - 300
+    updateOverlayState(overlay2, frame, 158, 175, 290, 300);
   }
 
   // 5. Smooth Momentum Animation Loop (LERP)
